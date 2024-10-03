@@ -22,15 +22,16 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     console.log(selectedDates[0]);
-    if (options.defaultDate > selectedDates[0]){
-      startBtn.disabled = true;
+    if (selectedDates[0] <= new Date()) {
+      startBtn.disabled = true; // Деактивуємо кнопку
       iziToast.error({
         message: "Please choose a date in the future",
-    });
+      });
+    } else {
+      startBtn.disabled = false; 
+      userSelectedDate = selectedDates[0]; 
+    }
   }
-  startBtn.disabled = false;
-  userSelectedDate = selectedDates[0];
-}
 };
 
 
